@@ -1,0 +1,132 @@
+:root{
+    --text-color: #fff;
+    --background-color: #263343;
+    --accent-color: #d49466;
+    --hover-color: rgb(219, 186, 145);
+}
+/* 이게 변수를 사용한 색상지정임. 뭐 다른 css를 집어넣어서(특히 자주사용하는 것들.) 하는것도 좋을듯 함. */
+
+body{
+    margin: 0;
+    /* 원하지 않는 스페이싱(여백)이 있는 이유는, 바디 태그에 마진이 있기때문에 마진을 0으로 설정해줌  */
+    font-family: 'Noto Sans KR', sans-serif;
+    /*이게 구글에서 노토샌즈의 필기체 사용을 위한 css규칙? 같은느낌*/
+    /*어디부분에 어떻게 넣으라고 사이트에 명시되어있음*/
+}
+
+a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+.navbar{
+    /* 형제들이 상위 박스인 navbar에 나란히 배치하도록 일단 display: flex 를 입힘 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background-color);
+    padding: 8px 12px;
+}
+
+.navbar_logo{
+    font-size: 24px;
+    color: var(--text-color);
+}
+
+.navbar_logo i{
+    color: var(--accent-color);
+}
+
+.navbar_menu{
+    display: flex;
+    list-style: none;
+    padding-left: 0;
+    /* 잘 보면 박스안에 패딩이 있어서(오른쪽으로 띄어져 있음) 패딩 레프트를 0으로 주어서 패딩을 없에줌 */
+}
+
+.navbar_menu li{
+    padding: 8px 12px;
+    /* 패딩을 조금 준 이유는 영역을 조금 키워서 사용자들이 더욱 클릭하기 수월하게끔 만들어주기 위함이다. */
+}
+
+.navbar_menu li:hover{
+    background-color: var(--hover-color);
+    border-radius: 4px;
+}
+
+.navbar_icons{
+    list-style: none;
+    color: var(--text-color);
+    display: flex;
+}
+
+.navbar_icons li{
+    padding: 8px 12px;
+}
+
+/* 전체화면같이 큰 화면에서는 등장하지않고, 반응형으로 봤을때 화면이 줄어들면, 그때 햄버거 버튼이 등장하도록 만듦 */
+.navbar_toggleBtn{
+    display: none;
+    position: absolute;
+    right: 32px;
+    font-size: 24px;
+    color: var(--accent-color);
+}
+
+/* header 부분 끝 */
+
+.wrap{
+    display: flex;
+    background-color: orange;
+}
+
+
+/* 이 밑에서부터는 미디어 쿼리(반응형 홈페이지 제작을 위함.) */ 
+@media screen and (max-width: 768px){
+    .navbar{
+        
+        /* 기준축(Default가 Row, 지금처럼 플레스 디렉션을 column으로 지정해주면 기준축이 수직이 됨.) */
+        flex-direction: column;
+        align-items: flex-start;
+        /* 기준축을 설정한 방형의 90도 반대(예를들어 기준축이 row 일때, align-items 는 column의 정렬 기준을 정함.) */
+        /* justify-content는 기준축의 정렬을 담당. */
+        padding: 8px 24px;
+    }
+
+    .navbar_menu{
+        display: none;
+        width: 100%;
+        /* 바꿔도 아무런 변화가 없는건 메뉴 자체의 너비가 작아서 그럼. 그래서 100%로 설정 해줌 */
+        flex-direction: column;
+        align-items: center;
+        /* 메뉴나 아이콘을 중간으로 정렬하고 싶어서 -> 얼라인 아이템스를 센터로 */
+    }
+
+    .navbar_menu li{
+        width: 100%;
+        /* 호버 되었을때 색깔이 조그마한 영역에만 입혀지는 이유는 차지하고있는 영역이 작기때문. 그래서 width를 100%로 키워줌 */
+        text-align: center;
+        /* 너비가 넓어짐에 따라서 자동으로 텍스트가 왼쪽 정렬됨. 그래서 텍스트 얼라인으로 센터로 맞춰줌 */
+    }
+
+    .navbar_icons{
+        display: none;
+        justify-content: center;
+        width: 100%;
+        /* 너비가 100퍼센트가 아니면 가운데로 안옴. 그래서 100%로 만들어줌. */
+        /* 근데 중간으로 안오는 이유는 마크업 태그에 기본적으로 적용된 패딩들이 있음. 그래서 그걸 빼주고 시작하는게 관례라고함.
+        margin 0 0; 이런식으로 ㅇㅇ 여기서는 li태그에 기본적으로 적용된 패딩때문에 중간으로 안오는거였음.
+        그래서 빼주면 가운데로 오게됨. */
+        padding-left: 0;
+    }
+
+    /* 페이지가 줄어들면 햄버거 버튼이 등장하게끔 설정함. */
+    .navbar_toggleBtn{
+        display: block;
+    }
+
+    .navbar_menu.active,
+    .navbar_icons.active{
+        display: flex;
+    }
+
+}

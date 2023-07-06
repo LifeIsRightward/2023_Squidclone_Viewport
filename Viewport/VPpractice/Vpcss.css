@@ -1,0 +1,55 @@
+*{
+    font-size: 30px;
+    font-weight: 100;
+}
+
+.root{
+    width: 1280px;
+    height: 680px;
+    display: flex;
+    justify-content: space-between;
+    background-color: orange;
+}
+
+.rleft{
+    flex: 1;
+    width: 200px;
+    height: 50px;
+    line-height: 50px;
+    background-color: magenta;
+}
+
+.rcenter{
+    flex: 5;
+    width: 800px;
+    height: 50px;
+    background-color: blue;
+}
+
+.rcenter > ul{/*ul태그도 flex가 먹혀들어감.*/
+    margin: auto 0;
+    line-height: 50px;
+    display: flex;
+    list-style-type: none;
+}
+
+.rcenter > ul > li{
+    margin-left: 50px;
+    background-color: blueviolet;
+}
+
+.rright{
+    flex: 2;
+    width: 100px;
+    height: 50px;
+    background-color: brown;
+}
+
+.tf{
+    position: relative;
+}
+/* 왼쪽만 선택해서 마진 레프트 들어가는건지 본거임 */
+.tf > input:first-child{
+    margin-left: 75px;
+    background-color: aquamarine;
+}
